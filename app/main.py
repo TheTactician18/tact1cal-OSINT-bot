@@ -18,7 +18,7 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def cmd_start(message: Message):
-    await message.answer('Здарова братан')
+    await message.answer('Здарова братан !!!!')
 
 async def main():
     print("Бот запускается...")
