@@ -1,6 +1,7 @@
 import os
 import asyncio
 import logging
+import json
 
 from aiogram import Bot, Dispatcher
 from aiogram.filters import CommandStart
@@ -36,12 +37,15 @@ async def cmd_start(message: Message):
 	)
 
 @dp.message(Command("ip"))
-async def cmd_ip(message: Message,command: CommandObject):
-	if not command.args:
-		await message.answer("[!] Введите айпи после команды Пример: /ip 8.8.8.8\n")
-	else:
-		userData = command.args
-		await message.answer(getInfoByIP(userData))
+async def cmd_ip(message: Message):
+    args = message.text.split()
+    if len(args) < 2:
+        await message.answer("Использование: /ip <адрес>")
+        return      
+    ip_address = args[1]
+    data = getInfoByIP(ip_address)
+    formatted_text = json.dumps(data, indent=2, ensure_ascii=False)
+    await message.answer(f"<code>{formatted_text}</code>", parse_mode="HTML")
 
 async def main():
     print("Бот запускается...")
