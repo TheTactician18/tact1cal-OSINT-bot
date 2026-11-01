@@ -8,7 +8,7 @@ from aiogram.types import Message
 
 logging.basicConfig(level=logging.INFO)
 
-BOT_TOKEN = os.getenv("ENV_BOT_TOKEN")
+BOT_TOKEN = os.getenv("ENV_BOT_TOKEN",default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
 if not BOT_TOKEN:
     raise ValueError("Переменная ENV_BOT_TOKEN не задана на хостинге!")
