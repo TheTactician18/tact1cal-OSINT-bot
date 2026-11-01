@@ -41,7 +41,7 @@ async def cmd_ip(message: Message,command: CommandObject):
 		await message.answer("[!] Введите айпи после команды Пример: /ip 8.8.8.8\n")
 	else:
 		userData = command.args
-		await message.answer(str(getInfoByIP(userData)))
+		await message.answer(getInfoByIP(userData))
 
 async def main():
     print("Бот запускается...")
