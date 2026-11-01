@@ -7,7 +7,7 @@ from aiogram.filters import CommandStart
 from aiogram.types import Message
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-from aiogram.filters import Command
+from aiogram.filters import Command, CommandObject
 
 from getIP import *
 
@@ -36,8 +36,12 @@ async def cmd_start(message: Message):
 	)
 
 @dp.message(Command("ip"))
-async def cmd_ip(message: Message):
-    await message.answer("Команда /ip работает!")
+async def cmd_ip(message: Message,command: CommandObject):
+	if not command.args:
+		await message.answer("[!] Введите айпи после команды Пример: /ip 8.8.8.8\n")
+	else:
+		userData = command.args
+		await message.answer(str(getInfoByIP(userData)))
 
 async def main():
     print("Бот запускается...")
