@@ -8,6 +8,8 @@ from aiogram.types import Message
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
+from getIP import *
+
 logging.basicConfig(level=logging.INFO)
 
 BOT_TOKEN = os.getenv("ENV_BOT_TOKEN",default=DefaultBotProperties(parse_mode=ParseMode.HTML))
@@ -31,6 +33,10 @@ async def cmd_start(message: Message):
 		"Базовый лимит: 3 запроса в сутки.\n\n"
 		"[Инструмент предназначен исключительно для исследовательских задач в рамках действующего законодательства.]\n"
 	)
+
+@dp.message("Ip")
+async def cmd_getIP(message: Message):
+	await message.answer("g")
 
 async def main():
     print("Бот запускается...")
