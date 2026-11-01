@@ -7,6 +7,7 @@ from aiogram.filters import CommandStart
 from aiogram.types import Message
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
+from aiogram.filters import Command
 
 from getIP import *
 
@@ -34,9 +35,9 @@ async def cmd_start(message: Message):
 		"[Инструмент предназначен исключительно для исследовательских задач в рамках действующего законодательства.]\n"
 	)
 
-@dp.message("Ip")
-async def cmd_getIP(message: Message):
-	await message.answer("g")
+@dp.message(Command("ip"))
+async def cmd_ip(message: Message):
+    await message.answer("Команда /ip работает!")
 
 async def main():
     print("Бот запускается...")
